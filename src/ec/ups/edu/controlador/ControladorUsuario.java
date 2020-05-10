@@ -61,7 +61,13 @@ public class ControladorUsuario {
                         break;
 
                     case 3:
-
+                        int codigo2 = vista.editarTelefono();
+                        Telefono telefono3 = usuarioDaoImpl.readTelefono(usuario2,
+                                codigo2);
+                        vista.imprimirTelfono(telefono3);
+                        usuarioDaoImpl.eliminarTelefono(usuario2, codigo2);
+                        vista.imprimirTelefonos(usuario2);
+                        
                         break;
 
                     case 4:

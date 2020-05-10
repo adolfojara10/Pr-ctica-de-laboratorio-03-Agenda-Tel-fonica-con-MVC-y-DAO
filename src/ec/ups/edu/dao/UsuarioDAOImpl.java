@@ -123,7 +123,8 @@ public class UsuarioDAOImpl implements IUsuarioDAO {
         return null;
     }
     
-    public Map<Integer,Telefono> agregarTelefonoEditado(Usuario usuario, Telefono telefono, int codigo){
+    public Map<Integer,Telefono> agregarTelefonoEditado(Usuario usuario, 
+            Telefono telefono, int codigo){
         Map<Integer, Telefono> telefonos=new HashMap<Integer, Telefono>();
         
         telefonos = usuario.getTelefonos();
@@ -136,6 +137,17 @@ public class UsuarioDAOImpl implements IUsuarioDAO {
         return telefonos;
     }
     
+    public Map<Integer,Telefono> eliminarTelefono(Usuario usuario, int codigo){
+        Map<Integer, Telefono> telefonos=new HashMap<Integer, Telefono>();
+        
+        telefonos = usuario.getTelefonos();
+        
+        telefonos.remove(codigo);
+        
+        usuario.setTelefonos(telefonos);
+
+        return telefonos;
+    }
     
     
     

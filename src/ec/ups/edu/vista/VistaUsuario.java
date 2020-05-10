@@ -124,7 +124,7 @@ public class VistaUsuario {
     public int editarTelefono(){
         entrada= new Scanner(System.in);
         
-        System.out.println("Ingrese el codigo del telefono a editar: ");
+        System.out.println("Ingrese el codigo del telefono: ");
         int codigo = entrada.nextInt();
         
         return codigo;
