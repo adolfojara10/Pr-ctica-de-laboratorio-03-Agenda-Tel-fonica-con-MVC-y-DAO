@@ -5,10 +5,19 @@
  */
 package ec.ups.edu.idao;
 
+import ec.ups.edu.modelo.Usuario;
+import java.util.*;
+
 /**
  *
  * @author Adolfo
  */
 public interface IUsuarioDAO {
     
+    public void create(Usuario usuario);
+    public Usuario read(String cedula);
+    public void update(Usuario usuario);
+    public void delete(Usuario usuario);  
+    public Map<String, Usuario> llamarUsuarios();   
+            
 }
