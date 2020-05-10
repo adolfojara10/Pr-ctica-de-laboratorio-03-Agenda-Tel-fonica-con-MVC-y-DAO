@@ -29,6 +29,21 @@ public class ControladorUsuario {
         usuarioDaoImpl.create(usuario2);
     }
     
+    public void iniciarSesion(){
+        String correo = vista.iniciarSesionCorreo();
+        String contraseña = vista.iniciarSesionContraseña();
+        
+        usuario2=usuarioDaoImpl.iniciarSesion(correo, contraseña);
+        
+        if (usuario2!=null){
+            vista.imprimirUsuario(usuario2);
+        } else {
+            String frase="Datos incorrectos";
+            vista.frase(frase);
+        }
+        
+    }
+    
     
     
 }

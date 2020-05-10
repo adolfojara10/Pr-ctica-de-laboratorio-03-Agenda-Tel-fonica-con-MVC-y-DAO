@@ -28,40 +28,41 @@ public class UsuarioDAOImpl implements IUsuarioDAO {
         listaUsuarios.put(usuario.getCedula(), usuario);
     }
 
-   // @Override
+    // @Override
     @Override
     public Usuario read(String cedula) {
-        Iterator it= listaUsuarios.keySet().iterator();
-        while(it.hasNext()){
+        Iterator it = listaUsuarios.keySet().iterator();
+        while (it.hasNext()) {
             Usuario usuario = (Usuario) it.next();
-            if(usuario.getCedula().equals(cedula)){
+            if (usuario.getCedula().equals(cedula)) {
                 return usuario;
+
             }
         }
         return null;
     }
 
-     //@Override
+    //@Override
     @Override
     public void update(Usuario usuario) {
         Iterator it = listaUsuarios.keySet().iterator();
-        while(it.hasNext()){
-            Usuario usuario2=(Usuario) it.next();
-            if(usuario2.getCedula().equals(usuario)){
+        while (it.hasNext()) {
+            Usuario usuario2 = (Usuario) it.next();
+            if (usuario2.getCedula().equals(usuario)) {
                 listaUsuarios.replace(usuario.getCedula(), usuario, usuario2);
                 break;
             }
         }
-        
+
     }
 
-     //@Override
+    //@Override
     @Override
     public void delete(Usuario usuario) {
         Iterator it = listaUsuarios.keySet().iterator();
-        while(it.hasNext()){
-            Usuario usuario2=(Usuario) it.next();
-            if(usuario2.getCedula().equals(usuario)){
+        while (it.hasNext()) {
+            Usuario usuario2 = (Usuario) it.next();
+            if (usuario2.getCedula().equals(usuario)) {
                 listaUsuarios.remove(usuario.getCedula());
                 break;
             }
@@ -71,6 +72,26 @@ public class UsuarioDAOImpl implements IUsuarioDAO {
     @Override
     public Map<String, Usuario> llamarUsuarios() {
         return listaUsuarios;
+    }
+
+    @Override
+    public Usuario iniciarSesion(String correo, String contraseña) {
+        
+        for (Map.Entry<String, Usuario> usuario:listaUsuarios.entrySet()){
+            String key = usuario.getKey();
+            Usuario valor = usuario.getValue();
+            if(valor.getCorreo().equals(correo)){
+                if(valor.getContraseña().equals(contraseña)){
+                    String frase = "sesion iniciada";
+                    Usuario usu = new Usuario();
+                    usu = listaUsuarios.get(key);
+                    return usu;
+                }
+            }
+            
+        }
+
+        return null;
     }
 
 }

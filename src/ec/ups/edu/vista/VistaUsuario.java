@@ -69,5 +69,38 @@ public class VistaUsuario {
         return usuario;
     }
     
+    public String iniciarSesionCorreo(){
+        entrada = new Scanner(System.in);
+        
+        System.out.println("Escriba su correo: ");
+        String correo =entrada.next();
+        
+        return correo;
+        
+    }
+    
+    public String iniciarSesionContraseña(){
+        entrada = new Scanner(System.in);
+        
+        System.out.println("Escriba su contraseña: ");
+        String contraseña = entrada.next();
+        
+        return contraseña;
+    }
+    
+    public void imprimirUsuario(Usuario usuario){
+        System.out.println("Usuario:\n" + usuario.toString());
+    }
+    
+    public void frase(String frase){
+        System.out.println(frase);
+    }
+    /*
+    public Telefono crearTelefono(){
+        Scanner entrada = new Scanner(System.in);
+        System.out.println("");
+        
+    }
+    */
     
 }

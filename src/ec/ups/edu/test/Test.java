@@ -31,12 +31,21 @@ public class Test {
         do{
             System.out.println("\nDigite el numero de accion que desea "
                     + "ejecutar:\n" + "1.-Crear un nuevo usuario" 
-                    + "\n2.-Iniciar sesion");
+                    + "\n2.-Iniciar sesion" + "\n3.-Agregar un(os) teléfono(s)");
             opcionMenu = leer.nextInt();
             
             switch ( opcionMenu){
                 case 1:
                     controlador.registrar();
+                    break;
+                    
+                case 2:
+                    controlador.iniciarSesion();
+                    break;
+                    
+                case 3:
+                    
+                    break;
             }
         } while (opcionMenu!=3);
         

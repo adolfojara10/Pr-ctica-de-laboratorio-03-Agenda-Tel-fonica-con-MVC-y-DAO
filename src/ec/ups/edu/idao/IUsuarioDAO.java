@@ -17,7 +17,9 @@ public interface IUsuarioDAO {
     public void create(Usuario usuario);
     public Usuario read(String cedula);
     public void update(Usuario usuario);
-    public void delete(Usuario usuario);  
+    public void delete(Usuario usuario);
+    
+    public Usuario iniciarSesion(String correo,String contraseña); 
     public Map<String, Usuario> llamarUsuarios();   
             
 }
