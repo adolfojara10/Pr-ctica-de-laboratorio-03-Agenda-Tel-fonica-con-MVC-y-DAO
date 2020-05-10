@@ -122,7 +122,7 @@ public class Usuario {
     public String toString() {
         return "\nUsuario:\n" + "cedula: " + cedula + "\nnombre: " + nombre 
                 + ", apellido: " + apellido + "\ncorreo: " + correo 
-                + ", contraseña" + contraseña + "\ntelefono(s):\n " + telefonos;
+                + ", contraseña: " + contraseña + "\ntelefono(s):\n " + telefonos;
     }
     
     

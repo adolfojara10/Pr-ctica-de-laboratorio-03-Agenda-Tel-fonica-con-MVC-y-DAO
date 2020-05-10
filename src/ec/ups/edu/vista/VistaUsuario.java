@@ -118,12 +118,45 @@ public class VistaUsuario {
         Telefono telefono = new Telefono(codigo, numero, tipo, operadora);
         
         return telefono;
-
+        
+    }
+    
+    public int editarTelefono(){
+        entrada= new Scanner(System.in);
+        
+        System.out.println("Ingrese el codigo del telefono a editar: ");
+        int codigo = entrada.nextInt();
+        
+        return codigo;
+    }
+    
+    public Telefono telefonoEditado(){
+        entrada= new Scanner(System.in);
+        
+        System.out.println("Ingrese el codigo: ");
+        int codigo = entrada.nextInt();
+        System.out.println("Ingrese el numero: ");
+        String numero = entrada.next();
+        System.out.println("Ingrese el tipo: ");
+        String tipo = entrada.next();
+        System.out.println("Ingrese la operadora: ");
+        String operadora = entrada.next();
+        
+        Telefono telefono = new Telefono(codigo, numero, tipo, operadora);
+        
+        return telefono;
+    }
+    
+    
+    public void imprimirTelfono(Telefono telefono){
+        System.out.println("Telefono: ");
+        System.out.println(telefono.toString());
     }
     
     public void imprimirTelefonos(Usuario usuario){
+        
         System.out.println("Telefonos: ");
-        System.out.println(usuario.getTelefonos());
+        System.out.println(usuario.getTelefonos().toString());
         
     }
 

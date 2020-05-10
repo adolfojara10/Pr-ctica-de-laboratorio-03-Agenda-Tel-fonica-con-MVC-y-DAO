@@ -80,7 +80,6 @@ public class UsuarioDAOImpl implements IUsuarioDAO {
             Usuario valor = usuario.getValue();
             if(valor.getCorreo().equals(correo)){
                 if(valor.getContraseña().equals(contraseña)){
-                    String frase = "sesion iniciada";
                     Usuario usu = new Usuario();
                     usu = listaUsuarios.get(key);
                     return usu;
@@ -105,6 +104,37 @@ public class UsuarioDAOImpl implements IUsuarioDAO {
         return telefonos;
     }
     
+    public Telefono readTelefono(Usuario usuario, int codigo){
+        
+        Map<Integer, Telefono> telefonos = new HashMap<Integer, Telefono>();
+        telefonos = usuario.getTelefonos();
+                
+        for(Map.Entry<Integer, Telefono>telefono2:telefonos.entrySet()){
+            
+            if(telefono2.getKey().equals(codigo)){
+                Telefono telefono3 = new Telefono();
+                int key = telefono2.getKey();
+                telefono3 = telefonos.get(key);
+                return telefono3;
+                
+            }
+        }
+        
+        return null;
+    }
+    
+    public Map<Integer,Telefono> agregarTelefonoEditado(Usuario usuario, Telefono telefono, int codigo){
+        Map<Integer, Telefono> telefonos=new HashMap<Integer, Telefono>();
+        
+        telefonos = usuario.getTelefonos();
+        
+        telefonos.remove(codigo);
+        telefonos.put(telefono.getCodigo(), telefono);
+        
+        usuario.setTelefonos(telefonos);
+
+        return telefonos;
+    }
     
     
     
