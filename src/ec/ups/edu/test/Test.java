@@ -26,6 +26,7 @@ public class Test {
         VistaUsuario vista = new VistaUsuario();
         ControladorUsuario controlador = new ControladorUsuario(vista);
         int opcionMenu;
+        boolean cuenta=false;
         
         System.out.println("\n*******Bienvenido al Menú*******\n");
         do{
@@ -41,6 +42,8 @@ public class Test {
                     
                 case 2:
                     controlador.iniciarSesion();
+                                       
+                                        
                     break;
                     
                 case 3:

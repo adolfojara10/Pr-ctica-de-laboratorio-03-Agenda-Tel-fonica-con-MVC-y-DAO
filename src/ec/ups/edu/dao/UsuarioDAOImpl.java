@@ -6,6 +6,7 @@
 package ec.ups.edu.dao;
 
 import ec.ups.edu.idao.IUsuarioDAO;
+import ec.ups.edu.modelo.Telefono;
 import ec.ups.edu.modelo.Usuario;
 import java.util.*;
 
@@ -69,10 +70,7 @@ public class UsuarioDAOImpl implements IUsuarioDAO {
         }
     }
 
-    @Override
-    public Map<String, Usuario> llamarUsuarios() {
-        return listaUsuarios;
-    }
+    
 
     @Override
     public Usuario iniciarSesion(String correo, String contraseña) {
@@ -90,8 +88,29 @@ public class UsuarioDAOImpl implements IUsuarioDAO {
             }
             
         }
-
+        
         return null;
     }
 
+    public Map<Integer,Telefono> agregarTelefono(Usuario usuario, Telefono telefono){
+        Map<Integer, Telefono> telefonos=new HashMap<Integer, Telefono>();
+        
+        telefonos = usuario.getTelefonos();
+        
+        telefonos.put(telefono.getCodigo(), telefono);
+        
+        usuario.setTelefonos(telefonos);
+        
+        
+        return telefonos;
+    }
+    
+    
+    
+    
+    
+    @Override
+    public Map<String, Usuario> llamarUsuarios() {
+        return listaUsuarios;
+    }
 }

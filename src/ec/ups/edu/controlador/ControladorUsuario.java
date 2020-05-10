@@ -6,6 +6,7 @@
 package ec.ups.edu.controlador;
 
 import ec.ups.edu.dao.UsuarioDAOImpl;
+import ec.ups.edu.modelo.Telefono;
 import ec.ups.edu.modelo.Usuario;
 import ec.ups.edu.vista.VistaUsuario;
 
@@ -14,36 +15,68 @@ import ec.ups.edu.vista.VistaUsuario;
  * @author Adolfo
  */
 public class ControladorUsuario {
-    
+
     private Usuario usuario2;
     private VistaUsuario vista;
     private UsuarioDAOImpl usuarioDaoImpl;
 
     public ControladorUsuario(VistaUsuario vista) {
         this.vista = vista;
-        this.usuarioDaoImpl=new UsuarioDAOImpl();
+        this.usuarioDaoImpl = new UsuarioDAOImpl();
     }
-    
-    public void registrar(){
+
+    public void registrar() {
         usuario2 = vista.crearUsuario();
         usuarioDaoImpl.create(usuario2);
     }
-    
-    public void iniciarSesion(){
+
+    public void iniciarSesion() {
+
         String correo = vista.iniciarSesionCorreo();
         String contraseña = vista.iniciarSesionContraseña();
-        
-        usuario2=usuarioDaoImpl.iniciarSesion(correo, contraseña);
-        
-        if (usuario2!=null){
+
+        usuario2 = usuarioDaoImpl.iniciarSesion(correo, contraseña);
+
+        if (usuario2 != null) {
             vista.imprimirUsuario(usuario2);
+            int opcionSesion = 0;
+            while (opcionSesion != 4) {
+                opcionSesion = vista.menuEditarTelefonoUsuario();
+                switch (opcionSesion) {
+                    case 1:
+                        Telefono telefono = vista.ingresarTelefono();
+                        usuarioDaoImpl.agregarTelefono(usuario2, telefono);
+                        vista.imprimirTelefonos(usuario2);
+                        break;
+
+                    case 2:
+
+                        break;
+
+                    case 3:
+
+                        break;
+
+                    case 4:
+
+                        break;
+
+                    default:
+
+                        break;
+                }
+
+            }
+
         } else {
-            String frase="Datos incorrectos";
+            String frase = "Datos incorrectos";
             vista.frase(frase);
         }
         
     }
-    
-    
-    
+
+    public void editarTelefono() {
+
+    }
+
 }
