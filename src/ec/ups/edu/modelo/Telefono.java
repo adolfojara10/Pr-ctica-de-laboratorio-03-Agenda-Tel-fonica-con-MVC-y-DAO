@@ -86,7 +86,7 @@ public class Telefono {
     @Override
     public String toString() {
         return "\nTelefono:\n" + "codigo: " + codigo + ", numero: " + numero 
-                + ", tipo: " + tipo + ", operadora: " + operadora + '}';
+                + ", tipo: " + tipo + ", operadora: " + operadora;
     }
     
     

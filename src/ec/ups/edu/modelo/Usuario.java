@@ -114,9 +114,9 @@ public class Usuario {
     
     @Override
     public String toString() {
-        return "\nUsuario\n:" + "cedula: " + cedula + "\nnombre: " + nombre 
-                + ", apellido: " + apellido + "\ncorreo: " + correo
-                + "\ntelefono(s):\n " + telefonos + '}';
+        return "\nUsuario:\n" + "cedula: " + cedula + "\nnombre: " + nombre 
+                + ", apellido: " + apellido + "\ncorreo: " + correo 
+                + ", contraseña" + contraseña + "\ntelefono(s):\n " + telefonos;
     }
     
     
