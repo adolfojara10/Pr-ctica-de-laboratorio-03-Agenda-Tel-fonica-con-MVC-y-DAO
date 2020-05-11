@@ -20,53 +20,50 @@ public class Test {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        
+
         Scanner leer = new Scanner(System.in);
-        
+
         VistaUsuario vista = new VistaUsuario();
         ControladorUsuario controlador = new ControladorUsuario(vista);
         int opcionMenu;
-        boolean cuenta=false;
-        
+
         System.out.println("\n*******Bienvenido al Menú*******\n");
-        do{
-            
+        do {
+
             opcionMenu = controlador.menu();
-            
-            switch ( opcionMenu){
+
+            switch (opcionMenu) {
                 case 1:
                     controlador.registrar();
                     break;
-                    
+
                 case 2:
-                    controlador.iniciarSesion();     
-                                        
+                    controlador.iniciarSesion();
                     break;
-                    
+
                 case 3:
-                    
+                    controlador.imprimirTelefonos();
                     break;
-                    
+
                 case 4:
                     controlador.buscarUsuario();
                     break;
-                    
+
                 case 5:
                     controlador.imprimirUsuarios();
                     break;
-                    
+
                 case 6:
-                    
+                    controlador.salir();
                     break;
-                    
+
                 default:
-                    
+                    controlador.numeroErroneo();
                     break;
-                   
+
             }
-        } while (opcionMenu!=6);
-        
-        
+        } while (opcionMenu != 6);
+
     }
-    
+
 }

@@ -26,9 +26,9 @@ public class VistaUsuario {
         entrada = new Scanner(System.in);
         System.out.println("\nDigite el numero de accion que desea "
                     + "ejecutar:\n" + "1.-Crear un nuevo usuario" 
-                    + "\n2.-Iniciar sesion" + "\n3.-Agregar un(os) teléfono(s) a "
+                    + "\n2.-Iniciar sesion" + "\n3.-Imprimir telefonos de un usuario "
                     + "un usuario" + "\n4.-Buscar un usuario" + "\n5.-Imprimir"
-                    + "todos los usuarios" + "\n6-Salir");
+                    + " todos los usuarios" + "\n6-Salir");
         int opcionMenu = entrada.nextInt();
         
         return opcionMenu;

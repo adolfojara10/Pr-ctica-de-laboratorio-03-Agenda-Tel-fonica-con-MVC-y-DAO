@@ -20,7 +20,6 @@ public class UsuarioDAOImpl implements IUsuarioDAO {
 
     public UsuarioDAOImpl() {
         listaUsuarios = new HashMap<String, Usuario>();
-
     }
 
     //@Override
@@ -32,13 +31,16 @@ public class UsuarioDAOImpl implements IUsuarioDAO {
     // @Override
     @Override
     public Usuario read(String cedula) {
-        Iterator it = listaUsuarios.keySet().iterator();
-        while (it.hasNext()) {
-            Usuario usuario = (Usuario) it.next();
-            if (usuario.getCedula().equals(cedula)) {
-                return usuario;
-
+        
+        for (Map.Entry<String, Usuario> usuario:listaUsuarios.entrySet()){
+            String key = usuario.getKey();
+            Usuario valor = usuario.getValue();
+            if(valor.getCedula().equals(cedula) || 
+                    (valor.getCorreo().equals(cedula))) {
+                Usuario usuario2 = listaUsuarios.get(key);
+                return usuario2;
             }
+                            
         }
         return null;
     }
@@ -70,87 +72,86 @@ public class UsuarioDAOImpl implements IUsuarioDAO {
         }
     }
 
-    
-
     @Override
     public Usuario iniciarSesion(String correo, String contraseña) {
-        
-        for (Map.Entry<String, Usuario> usuario:listaUsuarios.entrySet()){
+
+        for (Map.Entry<String, Usuario> usuario : listaUsuarios.entrySet()) {
             String key = usuario.getKey();
             Usuario valor = usuario.getValue();
-            if(valor.getCorreo().equals(correo)){
-                if(valor.getContraseña().equals(contraseña)){
+            if (valor.getCorreo().equals(correo)) {
+                if (valor.getContraseña().equals(contraseña)) {
                     Usuario usu = new Usuario();
                     usu = listaUsuarios.get(key);
                     return usu;
                 }
             }
-            
+
         }
-        
+
         return null;
     }
 
-    public Map<Integer,Telefono> agregarTelefono(Usuario usuario, Telefono telefono){
-        Map<Integer, Telefono> telefonos=new HashMap<Integer, Telefono>();
-        
+    @Override
+    public Map<Integer, Telefono> agregarTelefono(Usuario usuario, Telefono telefono) {
+        Map<Integer, Telefono> telefonos = new HashMap<Integer, Telefono>();
+
         telefonos = usuario.getTelefonos();
-        
+
         telefonos.put(telefono.getCodigo(), telefono);
-        
+
         usuario.setTelefonos(telefonos);
-        
-        
+
         return telefonos;
     }
-    
-    public Telefono readTelefono(Usuario usuario, int codigo){
-        
+
+    @Override
+    public Telefono readTelefono(Usuario usuario, int codigo) {
+
         Map<Integer, Telefono> telefonos = new HashMap<Integer, Telefono>();
         telefonos = usuario.getTelefonos();
-                
-        for(Map.Entry<Integer, Telefono>telefono2:telefonos.entrySet()){
-            
-            if(telefono2.getKey().equals(codigo)){
+
+        for (Map.Entry<Integer, Telefono> telefono2 : telefonos.entrySet()) {
+
+            if (telefono2.getKey().equals(codigo)) {
                 Telefono telefono3 = new Telefono();
                 int key = telefono2.getKey();
                 telefono3 = telefonos.get(key);
                 return telefono3;
-                
+
             }
         }
-        
+
         return null;
     }
-    
-    public Map<Integer,Telefono> agregarTelefonoEditado(Usuario usuario, 
-            Telefono telefono, int codigo){
-        Map<Integer, Telefono> telefonos=new HashMap<Integer, Telefono>();
-        
+
+    @Override
+    public Map<Integer, Telefono> agregarTelefonoEditado(Usuario usuario,
+            Telefono telefono, int codigo) {
+        Map<Integer, Telefono> telefonos = new HashMap<Integer, Telefono>();
+
         telefonos = usuario.getTelefonos();
-        
+
         telefonos.remove(codigo);
         telefonos.put(telefono.getCodigo(), telefono);
-        
+
         usuario.setTelefonos(telefonos);
 
         return telefonos;
     }
-    
-    public Map<Integer,Telefono> eliminarTelefono(Usuario usuario, int codigo){
-        Map<Integer, Telefono> telefonos=new HashMap<Integer, Telefono>();
-        
+
+    @Override
+    public Map<Integer, Telefono> eliminarTelefono(Usuario usuario, int codigo) {
+        Map<Integer, Telefono> telefonos = new HashMap<Integer, Telefono>();
+
         telefonos = usuario.getTelefonos();
-        
+
         telefonos.remove(codigo);
-        
+
         usuario.setTelefonos(telefonos);
 
         return telefonos;
     }
-    
-    
-    
+
     @Override
     public Map<String, Usuario> llamarUsuarios() {
         return listaUsuarios;

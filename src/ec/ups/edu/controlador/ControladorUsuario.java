@@ -108,10 +108,17 @@ public class ControladorUsuario {
 
     }
 
-    
-    
-    
-    
+    public void imprimirTelefonos(){
+        String id = vista.pedirIdentificador();
+        usuario2 = usuarioDaoImpl.read(id);
+        if (usuario2!=null){
+            vista.imprimirTelefonos(usuario2);
+        } else {
+            String frase = "Usuario no encontrado";
+            vista.frase(frase);
+        }       
+        
+    }
     
     
     public void buscarUsuario(){
@@ -130,5 +137,15 @@ public class ControladorUsuario {
         usuarios = usuarioDaoImpl.llamarUsuarios();
         vista.imprimirUsuarios(usuarios);
         
+    }
+    
+    public void salir(){
+        String frase = "Usted ha salido del programa";
+        vista.frase(frase);
+    }
+    
+    public void numeroErroneo(){
+        String frase = "Opcion incorrecta. Digite otra vez la opcion";
+        vista.frase(frase);
     }
 }
