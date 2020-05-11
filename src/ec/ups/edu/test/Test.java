@@ -10,7 +10,16 @@ import ec.ups.edu.vista.VistaUsuario;
 import java.util.Scanner;
 
 /**
+ * clase principal Test.
  *
+ * esta clase es la encargado de correr el programa. cuenta con la instancia de
+ * un objeto de tipo VistaUsuario y de un objeto ControladorUsuario. Cuenta con
+ * un menu el cual depende de lo que el usuario decida. Este menu se encuantra
+ * en la clase VistaUsuario. El ControladorUsuario es el encargado de llamar a
+ * los distintos metodos.
+ *
+ * @see VistaUsuario
+ * @see ControladorUsuario
  * @author Adolfo
  */
 public class Test {
@@ -23,41 +32,60 @@ public class Test {
 
         Scanner leer = new Scanner(System.in);
 
+        //se instancian los objetos
         VistaUsuario vista = new VistaUsuario();
         ControladorUsuario controlador = new ControladorUsuario(vista);
+        //un int que sirve para correr el menu
         int opcionMenu;
 
         System.out.println("\n*******Bienvenido al Menú*******\n");
-        do {
 
+        //bucle do-while encarrgado de correr el menu varias veces
+        do {
+            //se obtiene int para controlar el menu y las opciones de menu se encuentran aqui
             opcionMenu = controlador.menu();
 
+            //menu
             switch (opcionMenu) {
                 case 1:
+
+                    //para registrar un usuario nuevo
                     controlador.registrar();
                     break;
 
                 case 2:
+
+                    //para iniciar sesion
                     controlador.iniciarSesion();
                     break;
 
                 case 3:
+
+                    //para imprimir los telefonos de un usuario
                     controlador.imprimirTelefonos();
                     break;
 
                 case 4:
+
+                    //para buscr un usuario
                     controlador.buscarUsuario();
                     break;
 
                 case 5:
+
+                    //para imprimir todos los usuarios
                     controlador.imprimirUsuarios();
                     break;
 
                 case 6:
+
+                    //para salir
                     controlador.salir();
                     break;
 
                 default:
+
+                    //en caso de que digite un numero que no se encuentre en el menu
                     controlador.numeroErroneo();
                     break;
 

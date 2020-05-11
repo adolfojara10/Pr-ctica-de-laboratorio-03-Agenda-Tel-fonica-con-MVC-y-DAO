@@ -8,11 +8,20 @@ package ec.ups.edu.modelo;
 import java.util.*;
 
 /**
+ * clase Usuario.
  *
+ * Esta clase es la encargada de asignar los atributos del objeto Usuario.
+ * cuenta con dos metodos constructores. el primero donde se inicializa el
+ * diccionario de telefonos con el cual tiene una relacionde agregacion. Y el
+ * segundo que sirve para setear todos los atributos del objeto. Cuenta con
+ * todos los metodos getters y setters y con el toString.
+ *
+ * @see Telefono
  * @author Adolfo
  */
 public class Usuario {
 
+    //declaracion de atributos
     public String cedula;
     public String nombre;
     public String apellido;
@@ -20,12 +29,30 @@ public class Usuario {
     public String contraseña;
     public Map<Integer, Telefono> telefonos;
 
+    /**
+     * metodo constructor Usuario.
+     *
+     * en este se instancia el diccionario de tipo telefonos<Integer, Telefono>
+     */
     public Usuario() {
-        telefonos = new HashMap<Integer,Telefono>();
-        
+        telefonos = new HashMap<Integer, Telefono>();
+
     }
 
-    public Usuario(String cedula, String nombre, String apellido, String correo, 
+    /**
+     * metodo constructor Usuario.
+     *
+     * este metodo sirve para settear todos los atributos de la persona que son
+     * enviados.
+     *
+     * @param cedula
+     * @param nombre
+     * @param apellido
+     * @param correo
+     * @param contraseña
+     * @param telefonos
+     */
+    public Usuario(String cedula, String nombre, String apellido, String correo,
             String contraseña, Map<Integer, Telefono> telefonos) {
         this.cedula = cedula;
         this.nombre = nombre;
@@ -35,54 +62,151 @@ public class Usuario {
         this.telefonos = telefonos;
     }
 
+    /**
+     * metodo getCedula.
+     *
+     * sirve para enviar la cedula de un usuario creado.
+     *
+     * @return cedula
+     */
     public String getCedula() {
         return cedula;
     }
 
+    /**
+     * metodo setCedula.
+     *
+     * sirve para setear el atributo cedula del usuario, recibe este parametro y
+     * lo setea
+     *
+     * @param cedula
+     */
     public void setCedula(String cedula) {
         this.cedula = cedula;
     }
 
+    /**
+     * metodo getNombre.
+     *
+     * sirve para enviar el nombre de un usuario creado.
+     *
+     * @return nombre
+     */
     public String getNombre() {
         return nombre;
     }
 
+    /**
+     * metodo setNombre.
+     *
+     * sirve para setear el nombre cedula del usuario, recibe este parametro y
+     * lo setea
+     *
+     * @param nombre
+     */
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
 
+    /**
+     * metodo getApellido.
+     *
+     * sirve para enviar el apellido de un usuario creado.
+     *
+     * @return apellido
+     */
     public String getApellido() {
         return apellido;
     }
 
+    /**
+     * metodo setApellido.
+     *
+     * sirve para setear el apellido cedula del usuario, recibe este parametro y
+     * lo setea
+     *
+     * @param apellido
+     */
     public void setApellido(String apellido) {
         this.apellido = apellido;
     }
 
+    /**
+     * metodo getCorreo.
+     *
+     * sirve para enviar el correo de un usuario creado.
+     *
+     * @return correo
+     */
     public String getCorreo() {
         return correo;
     }
 
+    /**
+     * metodo setCorreo.
+     *
+     * sirve para setear el correo cedula del usuario, recibe este parametro y
+     * lo setea
+     *
+     * @param correo
+     */
     public void setCorreo(String correo) {
         this.correo = correo;
     }
 
+    /**
+     * metodo getContraseña.
+     *
+     * sirve para enviar la contraseña de un usuario creado.
+     *
+     * @return contraseña
+     */
     public String getContraseña() {
         return contraseña;
     }
 
+    /**
+     * metodo setContraseña.
+     *
+     * sirve para setear el atributo contraseña del usuario, recibe este
+     * parametro y lo setea
+     *
+     * @param contraseña
+     */
     public void setContraseña(String contraseña) {
         this.contraseña = contraseña;
     }
 
+    /**
+     * metodo getTelefono.
+     *
+     * sirve para enviar el diccionario de telefonos de un usuario creado.
+     *
+     * @return Map<Integer, Telefono>
+     */
     public Map<Integer, Telefono> getTelefonos() {
         return telefonos;
     }
 
+    /**
+     * metodo setTelefonos.
+     *
+     * sirve para setear el atributo telefonos del usuario, recibe este
+     * parametro y lo setea
+     *
+     * @param telefonos
+     */
     public void setTelefonos(Map<Integer, Telefono> telefonos) {
         this.telefonos = telefonos;
     }
 
+    /**
+     * metodo hashCode.
+     *
+     * sirve para crear un codigo unico para la cedula, correo y contraseña
+     *
+     * @return hash
+     */
     @Override
     public int hashCode() {
         int hash = 7;
@@ -92,6 +216,15 @@ public class Usuario {
         return hash;
     }
 
+    /**
+     * metodo equals.
+     *
+     * sirve para la comparacion de los atributos del usuario: cedula, correo, y
+     * contraseña. si no los encuatra devuelve null
+     *
+     * @param obj
+     * @return boolean
+     */
     @Override
     public boolean equals(Object obj) {
         if (this == obj) {
@@ -116,14 +249,17 @@ public class Usuario {
         return true;
     }
 
-    
-    
+    /**
+     * metodo toString.
+     *
+     * sirve para la correcta impresion de los datos de la persona.
+     *
+     * @return
+     */
     @Override
     public String toString() {
-        return "\nUsuario:\n" + "cedula: " + cedula + "\nnombre: " + nombre 
-                + ", apellido: " + apellido + "\ncorreo: " + correo 
+        return "\nUsuario:\n" + "cedula: " + cedula + "\nnombre: " + nombre
+                + ", apellido: " + apellido + "\ncorreo: " + correo
                 + ", contraseña: " + contraseña + "\ntelefono(s):\n " + telefonos;
     }
-    
-    
 }

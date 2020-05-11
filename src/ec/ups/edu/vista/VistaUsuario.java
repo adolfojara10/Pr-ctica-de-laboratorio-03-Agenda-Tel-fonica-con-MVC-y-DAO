@@ -10,30 +10,62 @@ import ec.ups.edu.modelo.Usuario;
 import java.util.*;
 
 /**
+ * clase VistaUsuario.
  *
+ * Esta clase es la encargada de pedir los datos de las opciones de menu, cuando
+ * se quiere crear un nuevo usuario, cuando se quiere iniciar sesion, de
+ * imprimir los telefonos de un usuario, de imprimir un usuario, de imprimir
+ * todos los usuarios creados, y de imprimir frases. Estos son enviados a otras
+ * clases para su debido funcionamiento.
+ *
+ * @see ControladorUsuario
  * @author Adolfo
  */
 public class VistaUsuario {
 
+    //declaracion de un Scanner
     private Scanner entrada;
 
+    /**
+     * metodo constructor VistaUsuario.
+     *
+     * Es el encargado de instanciar un objeto de tipo Scanner.
+     */
     public VistaUsuario() {
         entrada = new Scanner(System.in);
 
     }
-    
-    public int menu(){
+
+    /**
+     * metodo menu.
+     *
+     * es el encargado de imprimir las opciones del menu y de recibir un dato de
+     * tipo entero que refleja la opcion que usuario desea ejecutar. Y por
+     * ultimo devuelve ese numero.
+     *
+     * @return int
+     */
+    public int menu() {
         entrada = new Scanner(System.in);
         System.out.println("\nDigite el numero de accion que desea "
-                    + "ejecutar:\n" + "1.-Crear un nuevo usuario" 
-                    + "\n2.-Iniciar sesion" + "\n3.-Imprimir telefonos de un usuario "
-                    + "un usuario" + "\n4.-Buscar un usuario" + "\n5.-Imprimir"
-                    + " todos los usuarios" + "\n6-Salir");
+                + "ejecutar:\n" + "1.-Crear un nuevo usuario"
+                + "\n2.-Iniciar sesion" + "\n3.-Imprimir telefonos de un usuario "
+                + "un usuario" + "\n4.-Buscar un usuario" + "\n5.-Imprimir"
+                + " todos los usuarios" + "\n6-Salir");
         int opcionMenu = entrada.nextInt();
-        
+
         return opcionMenu;
     }
 
+    /**
+     * metodo crearUsuario.
+     *
+     * Es el metodo encargado de pedir todos los datos para crear un objeto de
+     * tipo Usuario. Ademas se pregunta si se quieren añadir o no numeros de
+     * telefono ese momento.
+     *
+     * @return Usuario
+     */
     public Usuario crearUsuario() {
         entrada = new Scanner(System.in);
 
@@ -83,6 +115,14 @@ public class VistaUsuario {
         return usuario;
     }
 
+    /**
+     * metodo iniciarSesionCorreo.
+     *
+     * es el metodo encargado de pedir un correo al usuario que desea inicar
+     * sesion. Devuelve este valor que es de tipo String
+     *
+     * @return String
+     */
     public String iniciarSesionCorreo() {
         entrada = new Scanner(System.in);
 
@@ -93,6 +133,14 @@ public class VistaUsuario {
 
     }
 
+    /**
+     * metodo iniciarSesionContraseña.
+     *
+     * metodo encargado de pedir la contraseña al usuario que quiere iniciar
+     * sesion. Y por ultimo devuelve la contraseña que es de tipo String.
+     *
+     * @return String
+     */
     public String iniciarSesionContraseña() {
         entrada = new Scanner(System.in);
 
@@ -102,6 +150,15 @@ public class VistaUsuario {
         return contraseña;
     }
 
+    /**
+     * metodo menuEditarTelefonoUsuario.
+     *
+     * Una vez que el usuario ha iniciado sesion, tendra acceso a editar un
+     * telefono suyo ya creado, agregar uno nuevo, elminar un telfono o colver
+     * al menu. Lo que hace es recibir un numero que es la opcion y lo devuelve.
+     *
+     * @return int
+     */
     public int menuEditarTelefonoUsuario() {
         entrada = new Scanner(System.in);
         System.out.println("\nDigite la opcion que desea realizar:\n"
@@ -109,11 +166,18 @@ public class VistaUsuario {
                 + "\n3.-Eliminar un telefono" + "\n4.-Cerrar sesion y volver al "
                 + "menu");
         int opcionSesion = entrada.nextInt();
-           
-               
+
         return opcionSesion;
     }
 
+    /**
+     * metodo ingresarTelefono.
+     *
+     * este metodo es el encargado de pedir los datos de un nuevo telefono y
+     * crearlo. una vez hecho eso, devuelve el telefono ya creado.
+     *
+     * @return Telefono
+     */
     public Telefono ingresarTelefono() {
         entrada = new Scanner(System.in);
 
@@ -128,23 +192,39 @@ public class VistaUsuario {
         String operadora = entrada.next();
 
         Telefono telefono = new Telefono(codigo, numero, tipo, operadora);
-        
+
         return telefono;
-        
+
     }
-    
-    public int editarTelefono(){
-        entrada= new Scanner(System.in);
-        
+
+    /**
+     * menu editarTelefono.
+     *
+     * este metodo es el encargado de enviar el codigo del telefono que desea
+     * ser editado.
+     *
+     * @return int
+     */
+    public int editarTelefono() {
+        entrada = new Scanner(System.in);
+
         System.out.println("Ingrese el codigo del telefono: ");
         int codigo = entrada.nextInt();
-        
+
         return codigo;
     }
-    
-    public Telefono telefonoEditado(){
-        entrada= new Scanner(System.in);
-        
+
+    /**
+     * metodo telefonoEditado.
+     *
+     * pide los datos de un telefono que va a reemplazar a uno antiguo y lo
+     * envia.
+     *
+     * @return Telefono
+     */
+    public Telefono telefonoEditado() {
+        entrada = new Scanner(System.in);
+
         System.out.println("Ingrese el codigo: ");
         int codigo = entrada.nextInt();
         System.out.println("Ingrese el numero: ");
@@ -153,55 +233,91 @@ public class VistaUsuario {
         String tipo = entrada.next();
         System.out.println("Ingrese la operadora: ");
         String operadora = entrada.next();
-        
+
         Telefono telefono = new Telefono(codigo, numero, tipo, operadora);
-        
+
         return telefono;
     }
-    
-    
-    public String pedirIdentificador(){
-        entrada= new Scanner(System.in);
+
+    /**
+     * metodo pedirIdentificador.
+     *
+     * para pedir la cedula o correo de una persona y enviarlo.
+     *
+     * @return int
+     */
+    public String pedirIdentificador() {
+        entrada = new Scanner(System.in);
         System.out.println("Digite el correo o cedula de la persona a buscar: ");
         String id = entrada.next();
 
         return id;
     }
-    
-    public void imprimirTelfono(Telefono telefono){
+
+    /**
+     * metodo imprimirTelefono.
+     *
+     * metodo encargado de recibir un telefono e imprimirlo mediante su metodo
+     * toString
+     *
+     * @param telefono
+     */
+    public void imprimirTelfono(Telefono telefono) {
         System.out.println("Telefono: ");
         System.out.println(telefono.toString());
     }
-    
-    public void imprimirTelefonos(Usuario usuario){
-        
+
+    /**
+     * metodo imprimirTelefonos.
+     *
+     * metodo encargado de recibir un usuario en el cual se van a imprimir todos
+     * los telefonos del usuario.
+     *
+     * @param usuario
+     */
+    public void imprimirTelefonos(Usuario usuario) {
+
         System.out.println("Telefonos: ");
         System.out.println(usuario.getTelefonos().toString());
-        
+
     }
 
+    /**
+     * metodo imprimirUsuario.
+     *
+     * metodo encargado de imprirmir toda la informacion de un usuario ya creado
+     *
+     * @param usuario
+     */
     public void imprimirUsuario(Usuario usuario) {
         System.out.println("Usuario:\n" + usuario.toString());
     }
 
-    public void imprimirUsuarios(Map<String,Usuario> usuarios){
-        
-        for (Map.Entry<String, Usuario> usuario2:usuarios.entrySet()){
+    /**
+     * metodo imprimirUsuarios.
+     *
+     * este emtodo recibe un Map de usuario ya los imprime
+     *
+     * @param usuarios
+     */
+    public void imprimirUsuarios(Map<String, Usuario> usuarios) {
+
+        for (Map.Entry<String, Usuario> usuario2 : usuarios.entrySet()) {
             String key = usuario2.getKey();
             Usuario persona = usuario2.getValue();
             System.out.println("\nClave del usuario: " + key + "\n" + persona);
-        } 
-        
+        }
+
     }
+
+    /**
+     * metodo frase.
+     *
+     * metodo encargado de recibir una frase y de imprimirla.
+     *
+     * @param frase
+     */
     public void frase(String frase) {
         System.out.println(frase);
     }
-
-    /*
-    public Telefono crearTelefono(){
-        Scanner entrada = new Scanner(System.in);
-        System.out.println("");
-        
-    }
-     */
 }
