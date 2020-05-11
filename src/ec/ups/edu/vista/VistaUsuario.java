@@ -21,6 +21,18 @@ public class VistaUsuario {
         entrada = new Scanner(System.in);
 
     }
+    
+    public int menu(){
+        entrada = new Scanner(System.in);
+        System.out.println("\nDigite el numero de accion que desea "
+                    + "ejecutar:\n" + "1.-Crear un nuevo usuario" 
+                    + "\n2.-Iniciar sesion" + "\n3.-Agregar un(os) teléfono(s) a "
+                    + "un usuario" + "\n4.-Buscar un usuario" + "\n5.-Imprimir"
+                    + "todos los usuarios" + "\n6-Salir");
+        int opcionMenu = entrada.nextInt();
+        
+        return opcionMenu;
+    }
 
     public Usuario crearUsuario() {
         entrada = new Scanner(System.in);
@@ -92,7 +104,7 @@ public class VistaUsuario {
 
     public int menuEditarTelefonoUsuario() {
         entrada = new Scanner(System.in);
-        System.out.println("\nDigite la opcion que desea realizar:\n "
+        System.out.println("\nDigite la opcion que desea realizar:\n"
                 + "1.-Ingresar un nuevo numero" + "\n2.-Editar un telefono"
                 + "\n3.-Eliminar un telefono" + "\n4.-Cerrar sesion y volver al "
                 + "menu");
@@ -148,6 +160,14 @@ public class VistaUsuario {
     }
     
     
+    public String pedirIdentificador(){
+        entrada= new Scanner(System.in);
+        System.out.println("Digite el correo o cedula de la persona a buscar: ");
+        String id = entrada.next();
+
+        return id;
+    }
+    
     public void imprimirTelfono(Telefono telefono){
         System.out.println("Telefono: ");
         System.out.println(telefono.toString());
@@ -164,6 +184,15 @@ public class VistaUsuario {
         System.out.println("Usuario:\n" + usuario.toString());
     }
 
+    public void imprimirUsuarios(Map<String,Usuario> usuarios){
+        
+        for (Map.Entry<String, Usuario> usuario2:usuarios.entrySet()){
+            String key = usuario2.getKey();
+            Usuario persona = usuario2.getValue();
+            System.out.println("\nClave del usuario: " + key + "\n" + persona);
+        } 
+        
+    }
     public void frase(String frase) {
         System.out.println(frase);
     }

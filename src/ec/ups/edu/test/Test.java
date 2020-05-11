@@ -30,10 +30,8 @@ public class Test {
         
         System.out.println("\n*******Bienvenido al Menú*******\n");
         do{
-            System.out.println("\nDigite el numero de accion que desea "
-                    + "ejecutar:\n" + "1.-Crear un nuevo usuario" 
-                    + "\n2.-Iniciar sesion" + "\n3.-Agregar un(os) teléfono(s)");
-            opcionMenu = leer.nextInt();
+            
+            opcionMenu = controlador.menu();
             
             switch ( opcionMenu){
                 case 1:
@@ -41,16 +39,32 @@ public class Test {
                     break;
                     
                 case 2:
-                    controlador.iniciarSesion();
-                                       
+                    controlador.iniciarSesion();     
                                         
                     break;
                     
                 case 3:
                     
                     break;
+                    
+                case 4:
+                    controlador.buscarUsuario();
+                    break;
+                    
+                case 5:
+                    controlador.imprimirUsuarios();
+                    break;
+                    
+                case 6:
+                    
+                    break;
+                    
+                default:
+                    
+                    break;
+                   
             }
-        } while (opcionMenu!=3);
+        } while (opcionMenu!=6);
         
         
     }
