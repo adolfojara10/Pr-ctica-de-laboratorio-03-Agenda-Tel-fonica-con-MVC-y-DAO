@@ -81,12 +81,13 @@ public class VistaUsuario {
         System.out.println("Escriba la contraseña del nuevo usuario: ");
         String contraseña = entrada.next();
 
+        /*
         System.out.println("¿Desea crear los número de teléfono del nuevo "
                 + "usuario en este momento?\n 1.-Si desea crear los teléfonos"
                 + " \n 2.-Si desea volver al menú");
         int opcion = entrada.nextInt();
 
-        Map<Integer, Telefono> telefonos = new HashMap<Integer, Telefono>();
+        <Integer, Telefono> telefonos = new HashMap<Integer, Telefono>();
 
         while (opcion == 1) {
             System.out.println("\nInformación de los teléfonos:\n");
@@ -100,7 +101,7 @@ public class VistaUsuario {
             String operadora = entrada.next();
 
             Telefono telefono = new Telefono(codigo, numero, tipo, operadora);
-            telefonos.put(codigo, telefono);
+            
 
             System.out.println("¿Desea crear los número de teléfono del nuevo "
                     + "usuario en este momento?\n 1.-Si desea crear otro teléfono"
@@ -108,8 +109,9 @@ public class VistaUsuario {
             opcion = entrada.nextInt();
 
         }
+        */
         Usuario usuario = new Usuario(cedula, nombre, apellido, correo,
-                contraseña, telefonos);
+                contraseña);
 
         System.out.println("Usuario creado:\n " + usuario.toString());
         return usuario;
@@ -151,95 +153,6 @@ public class VistaUsuario {
     }
 
     /**
-     * metodo menuEditarTelefonoUsuario.
-     *
-     * Una vez que el usuario ha iniciado sesion, tendra acceso a editar un
-     * telefono suyo ya creado, agregar uno nuevo, elminar un telfono o colver
-     * al menu. Lo que hace es recibir un numero que es la opcion y lo devuelve.
-     *
-     * @return int
-     */
-    public int menuEditarTelefonoUsuario() {
-        entrada = new Scanner(System.in);
-        System.out.println("\nDigite la opcion que desea realizar:\n"
-                + "1.-Ingresar un nuevo numero" + "\n2.-Editar un telefono"
-                + "\n3.-Eliminar un telefono" + "\n4.-Cerrar sesion y volver al "
-                + "menu");
-        int opcionSesion = entrada.nextInt();
-
-        return opcionSesion;
-    }
-
-    /**
-     * metodo ingresarTelefono.
-     *
-     * este metodo es el encargado de pedir los datos de un nuevo telefono y
-     * crearlo. una vez hecho eso, devuelve el telefono ya creado.
-     *
-     * @return Telefono
-     */
-    public Telefono ingresarTelefono() {
-        entrada = new Scanner(System.in);
-
-        System.out.println("\nIngreso de telefono: ");
-        System.out.println("Ingrese el codigo: ");
-        int codigo = entrada.nextInt();
-        System.out.println("Ingrese el numero: ");
-        String numero = entrada.next();
-        System.out.println("Ingrese el tipo: ");
-        String tipo = entrada.next();
-        System.out.println("Ingrese la operadora: ");
-        String operadora = entrada.next();
-
-        Telefono telefono = new Telefono(codigo, numero, tipo, operadora);
-
-        return telefono;
-
-    }
-
-    /**
-     * menu editarTelefono.
-     *
-     * este metodo es el encargado de enviar el codigo del telefono que desea
-     * ser editado.
-     *
-     * @return int
-     */
-    public int editarTelefono() {
-        entrada = new Scanner(System.in);
-
-        System.out.println("Ingrese el codigo del telefono: ");
-        int codigo = entrada.nextInt();
-
-        return codigo;
-    }
-
-    /**
-     * metodo telefonoEditado.
-     *
-     * pide los datos de un telefono que va a reemplazar a uno antiguo y lo
-     * envia.
-     *
-     * @return Telefono
-     */
-    public Telefono telefonoEditado() {
-        entrada = new Scanner(System.in);
-
-        System.out.println("Ingrese el codigo: ");
-        int codigo = entrada.nextInt();
-        System.out.println("Ingrese el numero: ");
-        String numero = entrada.next();
-        System.out.println("Ingrese el tipo: ");
-        String tipo = entrada.next();
-        System.out.println("Ingrese la operadora: ");
-        String operadora = entrada.next();
-
-        Telefono telefono = new Telefono(codigo, numero, tipo, operadora);
-
-        return telefono;
-    }
-
-    /**
      * metodo pedirIdentificador.
      *
      * para pedir la cedula o correo de una persona y enviarlo.
@@ -252,35 +165,7 @@ public class VistaUsuario {
         String id = entrada.next();
 
         return id;
-    }
-
-    /**
-     * metodo imprimirTelefono.
-     *
-     * metodo encargado de recibir un telefono e imprimirlo mediante su metodo
-     * toString
-     *
-     * @param telefono
-     */
-    public void imprimirTelfono(Telefono telefono) {
-        System.out.println("Telefono: ");
-        System.out.println(telefono.toString());
-    }
-
-    /**
-     * metodo imprimirTelefonos.
-     *
-     * metodo encargado de recibir un usuario en el cual se van a imprimir todos
-     * los telefonos del usuario.
-     *
-     * @param usuario
-     */
-    public void imprimirTelefonos(Usuario usuario) {
-
-        System.out.println("Telefonos: ");
-        System.out.println(usuario.getTelefonos().toString());
-
-    }
+    }   
 
     /**
      * metodo imprimirUsuario.

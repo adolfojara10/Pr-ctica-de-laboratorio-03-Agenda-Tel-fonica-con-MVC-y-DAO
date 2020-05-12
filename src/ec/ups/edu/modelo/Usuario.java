@@ -22,12 +22,12 @@ import java.util.*;
 public class Usuario {
 
     //declaracion de atributos
-    public String cedula;
-    public String nombre;
-    public String apellido;
-    public String correo;
-    public String contraseña;
-    public Map<Integer, Telefono> telefonos;
+    private String cedula;
+    private String nombre;
+    private String apellido;
+    private String correo;
+    private String contraseña;
+    private List<Telefono> telefonos;
 
     /**
      * metodo constructor Usuario.
@@ -35,9 +35,19 @@ public class Usuario {
      * en este se instancia el diccionario de tipo telefonos<Integer, Telefono>
      */
     public Usuario() {
-        telefonos = new HashMap<Integer, Telefono>();
+        telefonos = new ArrayList<Telefono>();
 
     }
+
+    public Usuario(String cedula, String nombre, String apellido, String correo, String contraseña) {
+        this.cedula = cedula;
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.correo = correo;
+        this.contraseña = contraseña;
+    }
+    
+    
 
     /**
      * metodo constructor Usuario.
@@ -53,7 +63,7 @@ public class Usuario {
      * @param telefonos
      */
     public Usuario(String cedula, String nombre, String apellido, String correo,
-            String contraseña, Map<Integer, Telefono> telefonos) {
+            String contraseña, List<Telefono> telefonos) {
         this.cedula = cedula;
         this.nombre = nombre;
         this.apellido = apellido;
@@ -184,22 +194,32 @@ public class Usuario {
      *
      * @return Map<Integer, Telefono>
      */
-    public Map<Integer, Telefono> getTelefonos() {
+    public List<Telefono> getTelefonos() {
         return telefonos;
     }
 
-    /**
-     * metodo setTelefonos.
-     *
-     * sirve para setear el atributo telefonos del usuario, recibe este
-     * parametro y lo setea
-     *
-     * @param telefonos
-     */
-    public void setTelefonos(Map<Integer, Telefono> telefonos) {
-        this.telefonos = telefonos;
+    public void agregarTelefono(Telefono telefono){
+        telefonos.add(telefono);
     }
-
+    
+    public void actualizaTelefono(Telefono telefono){
+        if (telefonos.contains(telefono)){
+            int index = telefonos.indexOf(telefono);
+            telefonos.set(index, telefono);
+        }
+    }
+    
+    public void eliminarTelefono(Telefono telefono){
+        if (telefonos.contains(telefono)){
+            telefonos.remove(telefono);
+        }
+    }
+    
+    public List<Telefono> listarTelefono(){
+        return telefonos;
+    }
+    
+    
     /**
      * metodo hashCode.
      *

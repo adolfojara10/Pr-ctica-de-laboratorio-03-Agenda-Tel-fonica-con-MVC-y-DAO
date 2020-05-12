@@ -5,7 +5,6 @@
  */
 package ec.ups.edu.idao;
 
-import ec.ups.edu.modelo.Telefono;
 import ec.ups.edu.modelo.Usuario;
 import java.util.*;
 
@@ -72,64 +71,7 @@ public interface IUsuarioDAO {
      * @param contraseña
      * @return Usuario
      */
-    public Usuario iniciarSesion(String correo, String contraseña);
-
-    /**
-     * metodo agregarTelefono.
-     *
-     * este metodo es usado cuando el usuario inicia Sesion. Una vez hecho eso,
-     * el usuario podra agregar numero de telefono a su cuenta. Recibe como
-     * parametro el usuario que inicio sesion y un telefono ya creado y lo añade
-     * al diccionario de telefonos del usuario. Devuelve un el diccionario de
-     * telefonos para imprimir al usuario sus nuevos numeros telefonicos.
-     *
-     * @param usuario
-     * @param telefono
-     * @return Map<Integer, Telefono>
-     */
-    public Map<Integer, Telefono> agregarTelefono(Usuario usuario, Telefono telefono);
-
-    /**
-     * metodo readTelefono.
-     *
-     * este metodo es el encargado de recibir al usuario que inicio sesion y el
-     * codigo de uno de sus telefonos. Busca el telefono del usuario y lo
-     * devuelve para su futura impresion.
-     *
-     * @param usuario
-     * @param codigo
-     * @return Telefono
-     */
-    public Telefono readTelefono(Usuario usuario, int codigo);
-
-    /**
-     * metodo agregarTelefonoEditado.
-     *
-     * este metodo es el encargado de recibir el usuario que ya ha iniciado
-     * sesion, el telefono ya creado, y el codigo del telefono antiguo. En el
-     * telefono antiguo se borra y luego se añade el nuevo telefono que tiene
-     * diferentes datos. Devuelve el nuevo diccionario de telefonos del usuario.
-     *
-     * @param usuario
-     * @param telefono
-     * @param codigo
-     * @return Map<Integer, Telefono>
-     */
-    public Map<Integer, Telefono> agregarTelefonoEditado(Usuario usuario,
-            Telefono telefono, int codigo);
-
-    /**
-     * metodo eliminarTelefono.
-     *
-     * este metodo recibe al usuario que ha iniciado sesion, y al codigo del
-     * telefono que va a hacer eliminado. Borra el telefono y devuelve el nuevo
-     * diccionario del usuario.
-     *
-     * @param usuario
-     * @param codigo
-     * @return Map<Integer, Telefono>
-     */
-    public Map<Integer, Telefono> eliminarTelefono(Usuario usuario, int codigo);
+    public Usuario iniciarSesion(String correo, String contraseña);   
 
     /**
      * metodo llamarUsuarios.

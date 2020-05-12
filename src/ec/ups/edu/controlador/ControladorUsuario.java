@@ -5,9 +5,11 @@
  */
 package ec.ups.edu.controlador;
 
+import ec.ups.edu.dao.TelefonoDAOImpl;
 import ec.ups.edu.dao.UsuarioDAOImpl;
 import ec.ups.edu.modelo.Telefono;
 import ec.ups.edu.modelo.Usuario;
+import ec.ups.edu.vista.VistaTelefono;
 import ec.ups.edu.vista.VistaUsuario;
 import java.util.*;
 
@@ -28,20 +30,31 @@ public class ControladorUsuario {
 
     //declaracion de los objetos
     private Usuario usuario2;
-    private VistaUsuario vista;
+    private Telefono telefono2;
+    
+    private VistaUsuario vistaU;
+    private VistaTelefono vistaT;
+    
     private UsuarioDAOImpl usuarioDaoImpl;
+    private TelefonoDAOImpl telefonoDaoImpl;
+    
 
     /**
-     * metodo constructor ControladorUsuario.
-     *
-     * este metodo recibe un parametro de tipo VistaUsuario, y lo setea. Ademas
+     * metodo constructor ControladorUsuario.este metodo recibe un parametro de
+     * tipo VistaUsuario, y lo setea.Ademas 
      * se instancia un objeto de tipo UsuarioDAOImpl.
      *
-     * @param vista
+     *
+     * @param vistaU
+     * @param vistaT
+     * @param usuarioDaoImpl
+     * @param telefonoDAOImpl
      */
-    public ControladorUsuario(VistaUsuario vista) {
-        this.vista = vista;
-        this.usuarioDaoImpl = new UsuarioDAOImpl();
+    public ControladorUsuario(VistaUsuario vistaU, VistaTelefono vistaT, UsuarioDAOImpl usuarioDaoImpl, TelefonoDAOImpl telefonoDaoImpl) {    
+        this.vistaU = vistaU;
+        this.vistaT = vistaT;
+        this.usuarioDaoImpl = usuarioDaoImpl;
+        this.telefonoDaoImpl = telefonoDaoImpl;
     }
 
     /**
@@ -54,7 +67,7 @@ public class ControladorUsuario {
      * @return opcionMenu
      */
     public int menu() {
-        int opcionMenu = vista.menu();
+        int opcionMenu = vistaU.menu();
         return opcionMenu;
     }
 
@@ -66,7 +79,7 @@ public class ControladorUsuario {
      * enviado al metodo create de UsuarioDAOImpl.
      */
     public void registrar() {
-        usuario2 = vista.crearUsuario();
+        usuario2 = vistaU.crearUsuario();
         usuarioDaoImpl.create(usuario2);
     }
 
@@ -85,8 +98,8 @@ public class ControladorUsuario {
     public void iniciarSesion() {
 
         //se obtienen los datos de contraseña y correo
-        String correo = vista.iniciarSesionCorreo();
-        String contraseña = vista.iniciarSesionContraseña();
+        String correo = vistaU.iniciarSesionCorreo();
+        String contraseña = vistaU.iniciarSesionContraseña();
 
         //se envian los datos y se recibe una persona
         usuario2 = usuarioDaoImpl.iniciarSesion(correo, contraseña);
@@ -95,7 +108,7 @@ public class ControladorUsuario {
         if (usuario2 != null) {
 
             //se imprime el usuario
-            vista.imprimirUsuario(usuario2);
+            vistaU.imprimirUsuario(usuario2);
             int opcionSesion = 0;
             //inicio del menu
             while (opcionSesion != 4) {
@@ -294,5 +307,9 @@ public class ControladorUsuario {
 
         //impresion de la frase
         vista.frase(frase);
+    }
+
+    private UsuarioDAOImpl usuarioDAOImpl() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }
