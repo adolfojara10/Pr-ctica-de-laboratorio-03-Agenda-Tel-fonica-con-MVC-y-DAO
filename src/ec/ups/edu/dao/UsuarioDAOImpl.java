@@ -91,6 +91,16 @@ public class UsuarioDAOImpl implements IUsuarioDAO {
     //@Override
     @Override
     public void update(Usuario usuario) {
+        
+        for (Map.Entry<String, Usuario> usuario2 : listaUsuarios.entrySet()){
+            Usuario usuario3 = usuario2.getValue();
+            if (usuario3.getCedula().equals(usuario.getCedula())){
+                listaUsuarios.replace(usuario.getCedula(), usuario);
+                break;
+            }
+            
+        }
+        /*
         Iterator it = listaUsuarios.keySet().iterator();
         while (it.hasNext()) {
             Usuario usuario2 = (Usuario) it.next();
@@ -99,7 +109,7 @@ public class UsuarioDAOImpl implements IUsuarioDAO {
                 break;
             }
         }
-
+*/
     }
 
     /**
@@ -155,7 +165,17 @@ public class UsuarioDAOImpl implements IUsuarioDAO {
 
         return null;
     }
-
+    /*
+    public void agregarTelefono(Usuario usuario, Telefono telefono){
+        for(Map.Entry<String, Usuario> usuario2: listaUsuarios.entrySet()){
+            Usuario usuario3 = usuario2.getValue();
+            if (usuario3.getCedula().equals(usuario.getCedula())){
+                usuario3.Telefono(telefono);
+                break;
+            }
+        }
+    }
+*/
     /**
      * metodo llamarUsuarios.
      *

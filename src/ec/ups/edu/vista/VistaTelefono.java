@@ -41,29 +41,53 @@ public class VistaTelefono {
         return opcionSesion;
     }
     
+    public int confirmarCodigo(){
+        System.out.println("Confirme el codigo del tele: ");
+        int codigo = entrada.nextInt();
+        return codigo;
+    }
+    
     /**
-     * metodo ingresarTelefono.
+     * metodo ingresarTelefono.este metodo es el encargado de pedir los datos de un nuevo telefono y
+ crearlo.
      *
-     * este metodo es el encargado de pedir los datos de un nuevo telefono y
-     * crearlo. una vez hecho eso, devuelve el telefono ya creado.
+     * una vez hecho eso, devuelve el telefono ya creado.
      *
-     * @return Telefono
+     * @return 
      */
     public Telefono ingresarTelefono(){
         System.out.println("\nIngresar el nuevo telefono:\n ");
-        System.out.println("Ingrese el codigo:");
-        int codigo = entrada.nextInt();
         System.out.println("Numero:");
         String numero = entrada.next();
         System.out.println("Tipo:");
         String tipo = entrada.next();
         System.out.println("Operadora:");
         String operadora = entrada.next();
-        
+        System.out.println("Ingrese el codigo:");
+        int codigo = entrada.nextInt();
         Telefono telefono = new Telefono(codigo, numero, tipo, operadora);
+        
+      
         return telefono;
     }
        
+    /**
+     * menu editarTelefono.
+     *
+     * este metodo es el encargado de enviar el codigo del telefono que desea
+     * ser editado.
+     *
+     * @return int
+     */
+    public int pedirCodigo() {
+        entrada = new Scanner(System.in);
+
+        System.out.println("Ingrese el codigo del telefono: ");
+        int codigo = entrada.nextInt();
+
+        return codigo;
+    }
+    
     /**
      * metodo telefonoEditado.
      *
@@ -88,24 +112,8 @@ public class VistaTelefono {
 
         return telefono;
     }   
+   
     
-    /**
-     * menu editarTelefono.
-     *
-     * este metodo es el encargado de enviar el codigo del telefono que desea
-     * ser editado.
-     *
-     * @return int
-     */
-    public int editarTelefono() {
-        entrada = new Scanner(System.in);
-
-        System.out.println("Ingrese el codigo del telefono: ");
-        int codigo = entrada.nextInt();
-
-        return codigo;
-    }
-        
     /**
      * metodo imprimirTelefono.
      *
@@ -130,7 +138,11 @@ public class VistaTelefono {
     public void imprimirTelefonos(Usuario usuario) {
 
         System.out.println("Telefonos: ");
-        System.out.println(usuario.getTelefonos().toString());
+        if (usuario.getTelefonos()!=null){
+            System.out.println(usuario.getTelefonos().toString());
+        } else {
+            System.out.println("No posee telefonos");
+        }
     }
     
     public void imprimirTodosTelefonos(List<Telefono> telefonos){
@@ -143,4 +155,9 @@ public class VistaTelefono {
         }
         
     }
+    
+    public void imprimirFrase(String frase){
+        System.out.println(frase);
+    }
+    
 }

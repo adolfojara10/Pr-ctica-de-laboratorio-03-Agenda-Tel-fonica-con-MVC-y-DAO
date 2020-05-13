@@ -5,7 +5,13 @@
  */
 package ec.ups.edu.test;
 
+import ec.ups.edu.controlador.ControladorTelefono;
 import ec.ups.edu.controlador.ControladorUsuario;
+import ec.ups.edu.dao.TelefonoDAOImpl;
+import ec.ups.edu.dao.UsuarioDAOImpl;
+import ec.ups.edu.modelo.Telefono;
+import ec.ups.edu.modelo.Usuario;
+import ec.ups.edu.vista.VistaTelefono;
 import ec.ups.edu.vista.VistaUsuario;
 import java.util.Scanner;
 
@@ -33,8 +39,21 @@ public class Test {
         Scanner leer = new Scanner(System.in);
 
         //se instancian los objetos
-        VistaUsuario vista = new VistaUsuario();
-        ControladorUsuario controlador = new ControladorUsuario(vista);
+        VistaUsuario vistaU = new VistaUsuario();
+        VistaTelefono vistaT = new VistaTelefono();
+        
+        TelefonoDAOImpl telefonoDao = new TelefonoDAOImpl();
+        UsuarioDAOImpl usuarioDao = new UsuarioDAOImpl();
+        
+                
+        ControladorTelefono controladorT = new ControladorTelefono(vistaT, 
+                telefonoDao);
+                
+                
+        ControladorUsuario controladorU = new ControladorUsuario(vistaU, vistaT,
+                usuarioDao, telefonoDao);
+        
+        
         //un int que sirve para correr el menu
         int opcionMenu;
 
@@ -43,54 +62,97 @@ public class Test {
         //bucle do-while encarrgado de correr el menu varias veces
         do {
             //se obtiene int para controlar el menu y las opciones de menu se encuentran aqui
-            opcionMenu = controlador.menu();
+            opcionMenu = controladorU.menu();
 
             //menu
             switch (opcionMenu) {
                 case 1:
 
                     //para registrar un usuario nuevo
-                    controlador.registrar();
+                    controladorU.registrar();
                     break;
 
                 case 2:
 
                     //para iniciar sesion
-                    controlador.iniciarSesion();
+                    Usuario usuario = controladorU.iniciarSesion();
+                    /*
+                    if (usuario!=null){
+                        int opcion = 0;
+                        while(opcion!=4){
+                            opcion = controladorT.menu();
+                            
+                            switch(opcion){
+                                case 1: 
+                                    
+                                    controladorT.registrar(usuario);
+                                  //  controladorU.agregarTelefono();
+                                    break;
+                                    
+                                case 2:
+                                    
+                                    controladorT.actualizarTelefono();
+                                    break;
+                                    
+                                case 3:
+                                    
+                                    controladorT.eliminarTelefono();
+                                    break;
+                                    
+                                case 4:
+                                    
+                                    controladorT.salir();
+                                    break;
+                                    
+                                default:
+                                    
+                                    controladorU.numeroErroneo();
+                                    break;                                     
+                            }  
+                        }
+                    } else {
+                        controladorU.usuarioNoEncontrado();
+                    }*/
                     break;
 
                 case 3:
 
                     //para imprimir los telefonos de un usuario
-                    controlador.imprimirTelefonos();
+                    controladorU.imprimirTelefonos();
                     break;
 
                 case 4:
 
                     //para buscr un usuario
-                    controlador.buscarUsuario();
+                    controladorU.buscarUsuario();
                     break;
 
                 case 5:
 
                     //para imprimir todos los usuarios
-                    controlador.imprimirUsuarios();
+                    controladorU.imprimirUsuarios();
                     break;
 
                 case 6:
 
-                    //para salir
-                    controlador.salir();
+                    //para imprimir todos los telefonos del sistema
+                    controladorT.verTelefonos();
                     break;
 
+                case 7:
+                    
+                    //para imprimir una frase para salir
+                    controladorU.salir();
+                    break;
+                    
                 default:
 
                     //en caso de que digite un numero que no se encuentre en el menu
-                    controlador.numeroErroneo();
+                    controladorU.numeroErroneo();
                     break;
 
             }
-        } while (opcionMenu != 6);
+        } while (opcionMenu != 7);
 
     }
 

@@ -27,7 +27,7 @@ public class Usuario {
     private String apellido;
     private String correo;
     private String contraseña;
-    private List<Telefono> telefonos;
+    private List<Telefono> listaTelefonos;
 
     /**
      * metodo constructor Usuario.
@@ -35,10 +35,10 @@ public class Usuario {
      * en este se instancia el diccionario de tipo telefonos<Integer, Telefono>
      */
     public Usuario() {
-        telefonos = new ArrayList<Telefono>();
+        listaTelefonos = new ArrayList<>();
 
     }
-
+/*
     public Usuario(String cedula, String nombre, String apellido, String correo, String contraseña) {
         this.cedula = cedula;
         this.nombre = nombre;
@@ -46,30 +46,27 @@ public class Usuario {
         this.correo = correo;
         this.contraseña = contraseña;
     }
-    
+    */
     
 
     /**
-     * metodo constructor Usuario.
+     * metodo constructor Usuario.este metodo sirve para settear todos los atributos de la persona que son
+ enviados.
      *
-     * este metodo sirve para settear todos los atributos de la persona que son
-     * enviados.
      *
      * @param cedula
      * @param nombre
      * @param apellido
      * @param correo
      * @param contraseña
-     * @param telefonos
      */
     public Usuario(String cedula, String nombre, String apellido, String correo,
-            String contraseña, List<Telefono> telefonos) {
+            String contraseña) {
         this.cedula = cedula;
         this.nombre = nombre;
         this.apellido = apellido;
         this.correo = correo;
         this.contraseña = contraseña;
-        this.telefonos = telefonos;
     }
 
     /**
@@ -195,28 +192,31 @@ public class Usuario {
      * @return Map<Integer, Telefono>
      */
     public List<Telefono> getTelefonos() {
-        return telefonos;
+        return listaTelefonos;
     }
 
-    public void agregarTelefono(Telefono telefono){
-        telefonos.add(telefono);
+    public void setTelefonos(List<Telefono> listaTelefonos) {
+        this.listaTelefonos = listaTelefonos;
     }
     
+    
+    
+    /*
     public void actualizaTelefono(Telefono telefono){
-        if (telefonos.contains(telefono)){
-            int index = telefonos.indexOf(telefono);
-            telefonos.set(index, telefono);
+        if (listaTelefonos.contains(telefono)){
+            int index = listaTelefonos.indexOf(telefono);
+            listaTelefonos.set(index, telefono);
         }
     }
     
     public void eliminarTelefono(Telefono telefono){
-        if (telefonos.contains(telefono)){
-            telefonos.remove(telefono);
+        if (listaTelefonos.contains(telefono)){
+            listaTelefonos.remove(telefono);
         }
     }
-    
+    */
     public List<Telefono> listarTelefono(){
-        return telefonos;
+        return listaTelefonos;
     }
     
     
@@ -280,6 +280,6 @@ public class Usuario {
     public String toString() {
         return "\nUsuario:\n" + "cedula: " + cedula + "\nnombre: " + nombre
                 + ", apellido: " + apellido + "\ncorreo: " + correo
-                + ", contraseña: " + contraseña + "\ntelefono(s):\n " + telefonos;
+                + ", contraseña: " + contraseña + "\ntelefono(s):\n " + listaTelefonos;
     }
 }

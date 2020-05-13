@@ -48,9 +48,10 @@ public class ControladorUsuario {
      * @param vistaU
      * @param vistaT
      * @param usuarioDaoImpl
-     * @param telefonoDAOImpl
+     * @param telefonoDaoImpl
      */
-    public ControladorUsuario(VistaUsuario vistaU, VistaTelefono vistaT, UsuarioDAOImpl usuarioDaoImpl, TelefonoDAOImpl telefonoDaoImpl) {    
+    public ControladorUsuario(VistaUsuario vistaU, VistaTelefono vistaT, 
+            UsuarioDAOImpl usuarioDaoImpl, TelefonoDAOImpl telefonoDaoImpl) {    
         this.vistaU = vistaU;
         this.vistaT = vistaT;
         this.usuarioDaoImpl = usuarioDaoImpl;
@@ -95,7 +96,7 @@ public class ControladorUsuario {
      * menu interno para la diferente aplicaionde metodos para agregar, editar,
      * eliminar un telefono del usuario.
      */
-    public void iniciarSesion() {
+    public Usuario iniciarSesion() {
 
         //se obtienen los datos de contraseña y correo
         String correo = vistaU.iniciarSesionCorreo();
@@ -103,9 +104,17 @@ public class ControladorUsuario {
 
         //se envian los datos y se recibe una persona
         usuario2 = usuarioDaoImpl.iniciarSesion(correo, contraseña);
-
-        //condicional
-        if (usuario2 != null) {
+        /*
+        if (usuario2!=null){
+            vistaU.imprimirUsuario(usuario2);
+            return usuario2;
+            
+        } else {
+            return null;
+        }
+        */
+        
+          if (usuario2 != null) {
 
             //se imprime el usuario
             vistaU.imprimirUsuario(usuario2);
@@ -113,19 +122,28 @@ public class ControladorUsuario {
             //inicio del menu
             while (opcionSesion != 4) {
                 //se obtiene el entero encargado de trabajar con el menu
-                opcionSesion = vista.menuEditarTelefonoUsuario();
+                opcionSesion = vistaT.menuEditarTelefonoUsuario();
+                
                 switch (opcionSesion) {
                     case 1:
                         //se recibe un telefono que es creado en VistaUsuario
-                        Telefono telefono = vista.ingresarTelefono();
+                        telefono2 = vistaT.ingresarTelefono();
 
+                        Telefono telefono = (Telefono) telefono2;
                         //se envia el telefono y usuario para actualizarlos
-                        usuarioDaoImpl.agregarTelefono(usuario2, telefono);
-
+                        List<Telefono>tele = new ArrayList<>();
+                        tele = usuario2.getTelefonos();
+                        if (telefono!=null){
+                            tele.add(telefono);
+                        }
+                        
+                        usuario2.setTelefonos(tele);
+                        
+                        
                         //se imprime los telefonos del usuario
-                        vista.imprimirTelefonos(usuario2);
+                        vistaT.imprimirTelefonos(usuario2);
                         break;
-
+/*
                     case 2:
 
                         //se recibe un entero el cual es pedido por VistaUsuario
@@ -203,18 +221,51 @@ public class ControladorUsuario {
                                 + "accion que desea ejecutar";
                         vista.frase(frase2);
 
-                        break;
+                        break;*/
                 }
 
             }
 
         } else {
             String frase = "Datos incorrectos";
-            vista.frase(frase);
-        }
-
+            vistaU.frase(frase);
+             return null;
+          }
+        return null;
+       
+          
+        
     }
 
+    public void agregarTelefono(){
+       /* int codigo = vistaT.confirmarCodigo();
+        telefono2 =telefonoDaoImpl.readTelefono(codigo);
+        if (telefono2!=null){
+            usuarioDaoImpl.agregarTelefono(usuario2, telefono2);
+            usuarioDaoImpl.update(usuario2);
+        } else {
+            String frase = "Error en el codigo";
+            vistaU.frase(frase);
+        }
+        */
+       
+       /*
+       Telefono telefono= vistaT.ingresarTelefono();
+       telefonoDaoImpl.createTelefono(telefono);
+       
+       usuario2.agregarTelefono(telefono);
+       usuarioDaoImpl.update(usuario2);
+       
+       vistaU.imprimirUsuario(usuario2);
+       vistaT.imprimirTelfono(telefono);
+       usuario2.agregarTelefono(telefono);*/
+    }
+   
+    public void eliminarTelefono(){
+        
+    }
+    
+    
     /**
      * metodo imprimirTelefonos.
      *
@@ -223,19 +274,19 @@ public class ControladorUsuario {
      */
     public void imprimirTelefonos() {
         //se pide el correo o cedula
-        String id = vista.pedirIdentificador();
+        String id = vistaU.pedirIdentificador();
 
         //se envia el id para recibir un objetode tipo Usuario
         usuario2 = usuarioDaoImpl.read(id);
-        if (usuario2 != null) {
+        if (usuario2 != null && usuario2.getTelefonos()!=null) {
 
             //para imprimir los telefonos del objeto
-            vista.imprimirTelefonos(usuario2);
+            vistaT.imprimirTelefonos(usuario2);
         } else {
 
             //en caso de que no haya encontrado el usuario
-            String frase = "Usuario no encontrado";
-            vista.frase(frase);
+            String frase = "Usuario no encontrado o no posee telefonos";
+            vistaU.frase(frase);
         }
 
     }
@@ -248,17 +299,17 @@ public class ControladorUsuario {
     public void buscarUsuario() {
 
         //se pide el identificador del correo o cedula
-        String id = vista.pedirIdentificador();
+        String id = vistaU.pedirIdentificador();
 
         //recibir un usuario mandando el id
         usuario2 = usuarioDaoImpl.read(id);
         if (usuario2 != null) {
 
             //imprime el usuario
-            vista.imprimirUsuario(usuario2);
+            vistaU.imprimirUsuario(usuario2);
         } else {
             String frase = "Usuario no encontrado";
-            vista.frase(frase);
+            vistaU.frase(frase);
         }
     }
 
@@ -276,7 +327,7 @@ public class ControladorUsuario {
         usuarios = usuarioDaoImpl.llamarUsuarios();
 
         //se imprimen los usuarios
-        vista.imprimirUsuarios(usuarios);
+        vistaU.imprimirUsuarios(usuarios);
 
     }
 
@@ -291,7 +342,7 @@ public class ControladorUsuario {
         String frase = "Usted ha salido del programa";
 
         //impresion de la frase
-        vista.frase(frase);
+        vistaU.frase(frase);
     }
 
     /**
@@ -306,10 +357,11 @@ public class ControladorUsuario {
         String frase = "Opcion incorrecta. Digite otra vez la opcion";
 
         //impresion de la frase
-        vista.frase(frase);
+        vistaU.frase(frase);
     }
 
-    private UsuarioDAOImpl usuarioDAOImpl() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void usuarioNoEncontrado(){
+        String frase = "Usuario no encontrado, intentelo de nuevo";
+        vistaU.frase(frase);
     }
 }

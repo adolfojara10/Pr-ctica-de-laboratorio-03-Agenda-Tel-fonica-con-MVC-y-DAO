@@ -51,7 +51,8 @@ public class VistaUsuario {
                 + "ejecutar:\n" + "1.-Crear un nuevo usuario"
                 + "\n2.-Iniciar sesion" + "\n3.-Imprimir telefonos de un usuario "
                 + "un usuario" + "\n4.-Buscar un usuario" + "\n5.-Imprimir"
-                + " todos los usuarios" + "\n6-Salir");
+                + " todos los usuarios" + "\n6-Imprimir todos los telefonos "
+                + "registrados" + "\n7.-Salir");
         int opcionMenu = entrada.nextInt();
 
         return opcionMenu;
